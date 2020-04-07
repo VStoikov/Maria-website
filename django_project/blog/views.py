@@ -6,9 +6,11 @@ from django.views.generic import (
 	DetailView, 
 	CreateView,
 	UpdateView,
-	DeleteView
+	DeleteView,
+	FormView
 )
 from .models import Post
+from newsletter.forms import JoinForm
 
 def home(request):
 	context = {
@@ -21,13 +23,13 @@ class PostListView(ListView):
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
-	paginate_by = 5
+	paginate_by = 3
 
 class UserPostListView(ListView):
 	model = Post
 	template_name = 'blog/user_posts.html'
 	context_object_name = 'posts'
-	paginate_by = 5
+	paginate_by = 3
 
 	def get_queryset(self):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -67,6 +69,12 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.author:
 			return True
 		return False
+
+class AboutView(CreateView):
+	template_name = 'blog/about.html'
+	form_class = JoinForm
+	title = 'About'
+	success_url = '/about'
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})

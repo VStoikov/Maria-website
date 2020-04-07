@@ -1,5 +1,80 @@
 {% extends "blog/base.html" %}
+{% load static %}
+{% block header %}
+	<div class="slide-one-item home-slider owl-carousel">
+	  
+		<div class="site-blocks-cover" style="background-image: url({% static 'images/hero_bg_1.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+		<div class="container">
+		  <div class="row align-items-center justify-content-center text-center">
+
+		    <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+		      <h5 class="text-white font-weight-light text-uppercase">Добре дошли</h5>
+		      <h2 class="text-white font-weight-light mb-2 display-1">Експертът за вашата красота</h2>
+
+		      <p><a href="#" class="btn btn-black py-3 px-5">Запази час!</a></p>
+		    </div>
+		  </div>
+		</div>
+		</div>  
+
+		<div class="site-blocks-cover" style="background-image: url({% static 'images/hero_bg_2.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+		<div class="container">
+		  <div class="row align-items-center justify-content-center text-center">
+
+		    <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+		      <h2 class="text-white font-weight-light mb-2 display-1">Грижа за вашата коса.</h2>
+
+		      <p><a href="#" class="btn btn-black py-3 px-5">Запази час!</a></p>
+		    </div>
+		  </div>
+		</div>
+		</div>
+	</div>
+
+	<div class="site-section">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-md-6 col-lg-4 text-center">
+	        <h3 class="line-height-1 mb-3"><span class="d-block display-4 line-height-1 text-black">Добри дошли в</span> <span class="d-block display-4 line-height-1"><em class="text-primary font-weight-bold">Име на салона</em></span></h3>
+	        <p>Информация за салона...</p>
+	        <p><a href="#"><small class="text-uppercase font-weight-bold">Прочети още</small></a></p>
+	      </div>
+	      <div class="col-md-6 col-lg-4">
+	        <figure class="h-100 hover-bg-enlarge">
+	          <div class="bg-image h-100 bg-image-md-height" style="background-image: url({% static 'images/img_2.jpg' %});"></div>
+	        </figure>
+	      </div>
+	      <div class="col-md-6 col-lg-4">
+	        <div class="border p-4 d-flex align-items-center justify-content-center h-100">
+	          <div class="text-center">
+	            <h2 class="text-primary h2 mb-5">Работно време</h2>
+	            <p class="mb-4">
+	              <span class="d-block font-weight-bold">Понеделник – Петък </span>
+	              10:30 – 20:00
+	            </p>
+
+	            <p class="mb-4">
+	              <span class="d-block font-weight-bold">Събота</span>
+	              10:30 – 17:30
+	            </p>
+
+	            <p class="mb-4">
+	              <span class="d-block font-weight-bold">Неделя</span>
+	              10:30 – 14:30
+	            </p>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
 {% block content %}
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7">
+        <h2 class="site-section-heading font-weight-light text-black text-center">Новини</h2>
+      </div>
+    </div>
 	{% for post in posts %}
 		<article class="media content-section">
 		  <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -30,4 +105,69 @@
 			<a class="btn btn-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">>></a>
 		{% endif %}
 	{% endif %}
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7">
+            <h2 class="site-section-heading font-weight-light text-black text-center">Нови услуги</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
+              <span class="icon flaticon-razor display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-black h4">Услуга 1</h3>
+              <p>Описание на нова услуга 1.</p>
+              <p><strong class="font-weight-bold text-primary">29лв</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
+              <span class="icon flaticon-location-pin display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-black h4">Услуга 2</h3>
+              <p>Описание на услуга 2.</p>
+              <p><strong class="font-weight-bold text-primary">15лв</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 text-center mb-5 mb-lg-5">
+            <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
+              <span class="icon flaticon-shave display-3 text-primary mb-4 d-block"></span>
+              <h3 class="text-black h4">Услуга 4</h3>
+              <p>Описание на услуга 3.</p>
+              <p><strong class="font-weight-bold text-primary">13лв</strong></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-md-fluid">
+          </div>
+          <div class="col-lg-6 bg-white p-md-5 align-self-center">
+            <h2 class="display-1 text-black line-height-1 site-section-heading mb-4 pb-3">Нов сайлинг във фризьрството!</h2>
+            <p class="text-black lead"><em>&ldquo;Някакъв цитат на известен коафьор&rdquo;</em></p>
+            <p class="lead text-black">&mdash; <em>Име Име</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url({% static 'images/hero_bg_2.jpg' %}); background-attachment: fixed;">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-white font-weight-light mb-5 display-3">Опитайте нашите изключителни услуги</h2>
+            <a href="#" class="play-single-big d-inline-block popup-vimeo"><span class="icon-play"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>  
 {% endblock content %}
