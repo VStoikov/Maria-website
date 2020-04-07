@@ -80,7 +80,7 @@
 	                  </ul>
 	                </li>
 	                <li><a href="#">Запази час</a></li>
-	                <li><a href="#">Контакти</a></li>
+	                <li><a href="{% url 'blog-contacts' %}">Контакти</a></li>
 	                {% if user.is_authenticated %}
 	                  <a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a>
 	                  <a class="nav-item nav-link" href="{% url 'profile' %}">Профил</a>
@@ -179,16 +179,12 @@
 
             <div class="mb-5">
               <h3 class="footer-heading mb-2">Абонирайте се за новини</h3>
-              <p>Описание.</p>
-
-              <form action="#" method="post">
+              <p>Ако искате да получавате актуална информация за салона на вашата електронна поща, моля абонирайте се.</p>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Изпрати</button>
+                    <button class="btn btn-primary text-white" type="button" id="button-addon2"><a href="{% url 'blog-contacts' %}">Абонирай се</a></button>
                   </div>
                 </div>
-              </form>
 
             </div>
 

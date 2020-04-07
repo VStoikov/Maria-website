@@ -9,7 +9,7 @@ from django.views.generic import (
 	DeleteView,
 	FormView
 )
-from .models import Post
+from .models import Post, Page
 from newsletter.forms import JoinForm
 
 def home(request):
@@ -75,6 +75,22 @@ class AboutView(CreateView):
 	form_class = JoinForm
 	title = 'About'
 	success_url = '/about'
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(AboutView, self).get_context_data(*args, **kwargs)
+		context['page_obj'] = Page.objects.all().get(title="За нас")
+		return context
+
+class ContactsView(CreateView):
+	template_name = 'blog/contacts.html'
+	form_class = JoinForm
+	title = 'Contacts'
+	success_url = '/contacts'
+
+	def get_context_data(self, *args, **kwargs):
+		context = super(ContactsView, self).get_context_data(*args, **kwargs)
+		context['page_obj'] = Page.objects.all().get(title="Контакти")
+		return context
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})

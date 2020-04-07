@@ -1,13 +1,16 @@
 {% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
-	<h1>За нас</h1>
-	<div class="col-md-4">
-		<h2>Join Us</h2>
-		<p>
-			<form method="POST", action="">{% csrf_token %}
-				{{ form.as_p }}
-				<input type="submit" value="Join" cass="btn btn-default">
-			</form>
-		</p>
-	</div>
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7">
+            <h2 class="site-section-heading font-weight-light text-black text-center">{{ page_obj.title }}</h2>
+          </div>
+        </div>
+        {{ page_obj.content|safe }}
+				
+
+      </div>
+    </div>
 {% endblock content %}
