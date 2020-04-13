@@ -9,7 +9,7 @@ from django.views.generic import (
 	DeleteView,
 	FormView
 )
-from .models import Post, Page
+from .models import Post, Page, Services
 from newsletter.forms import JoinForm
 
 def home(request):
@@ -91,6 +91,17 @@ class ContactsView(CreateView):
 		context = super(ContactsView, self).get_context_data(*args, **kwargs)
 		context['page_obj'] = Page.objects.all().get(title="Контакти")
 		return context
+
+def services(request):
+	context = {
+		'services': Services.objects.all()
+	}
+	return render(request, 'blog/services.html', context)
+
+class ServicesView(ListView):
+	model = Services
+	template_name = 'blog/services.html'
+	context_object_name = 'services'
 
 def about(request):
 	return render(request, 'blog/about.html', {'title': 'About'})

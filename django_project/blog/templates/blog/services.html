@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="site-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7">
+        <h2 class="site-section-heading font-weight-light text-black text-center">Услуги</h2>
+      </div>
+    </div>        
+    <div class="row">
+      {% for service in services %}
+      {% if service.service_type == 'service' %}
+      <div class="col-md-6 col-lg-4 text-center mb-5 mb-lg-5">
+        <div class="h-100 p-4 p-lg-5 bg-light site-block-feature-7">
+          <span class="icon flaticon-{{ service.service_icon }} display-3 text-primary mb-4 d-block"></span>
+          <h3 class="text-black h4">{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <p><strong class="font-weight-bold text-primary">{{ service.price }}лв</strong></p>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+     </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7">
+        <h2 class="site-section-heading font-weight-light text-black text-center">Прически</h2>
+      </div>
+    </div>        
+    <div class="row">
+      {% for service in services %}
+      {% if service.service_type == 'haircut' %}
+      <div class="col-md-6 col-lg-4 text-center mb-5 mb-lg-5">
+        <div class="h-100 bg-light site-block-feature-7">
+          <img src="{{ service.image.url }}" alt="Image" class="img-fluid">
+          <div class="p-4 p-lg-5">
+            <h3 class="text-black h4">{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <p><strong class="font-weight-bold text-primary">{{ service.price }}лв</strong></p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+     </div>
+  </div>
+</div>
+{% endblock content %}

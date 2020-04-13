@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7">
+            <h2 class="site-section-heading font-weight-light text-black text-center">test</h2>
+          </div>
+        </div>
+        {% for service in services %}
+          <h1>{{ service.title }}</h1>
+          <img class="rounded-circle article-img" src="{{ service.image.url }}">
+          <content>{{ service.description }}</content>
+        {% endfor %}
+				
+
+      </div>
+    </div>
+{% endblock content %}
