@@ -55,27 +55,12 @@
 	            <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
 
 	              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-	                <li class="has-children active">
-	                  <a href="{% url 'blog-home' %}">Начало</a>
-	                  <ul class="dropdown">
-	                    <li><a href="#">Menu One</a></li>
-	                    <li><a href="#">Menu Two</a></li>
-	                    <li><a href="#">Menu Three</a></li>
-	                    <li class="has-children">
-	                      <a href="#">Sub Menu</a>
-	                      <ul class="dropdown">
-	                        <li><a href="#">Menu One</a></li>
-	                        <li><a href="#">Menu Two</a></li>
-	                        <li><a href="#">Menu Three</a></li>
-	                      </ul>
-	                    </li>
-	                  </ul>
-	                </li>
+	                <li><a href="{% url 'blog-home' %}">Начало</a></li>
 	                <li class="has-children">
 	                  <a href="{% url 'blog-about' %}">За нас</a>
 	                  <ul class="dropdown">
 	                    <li><a href="{% url 'blog-services' %}">Услуги</a></li>
-	                    <li><a href="#">Галерия</a></li>
+	                    <li><a href="/gallery">Галерия</a></li>
 	                    <li><a href="#">Екип</a></li>
 	                  </ul>
 	                </li>
@@ -135,6 +120,17 @@
 		  </div>
 		</main>
 	</div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <h2 class="mb-4 text-black">Ние ще накараме вашата коса да засияе</h2>
+            <p class="mb-0"><a href="{% url 'blog-contacts' %}" class="btn btn-primary py-3 px-5 text-white">Посетете салона сега</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="container">

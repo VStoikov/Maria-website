@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  {% if images %}
+  <div class="site-section">
+       <div class="container">
+          {% for list_of_image in list_of_images %}
+              <div class="row">
+                {% for image in list_of_image %}
+                  <div class="col" id="{{image.id}}">
+                    <a href="/gallery/{{ topic.name }}/{{image.id}}"><img height="200px" width="200px" class="img-thumbnail" src="/media/{{ image.image }}"></a>
+                  </div>
+                {% endfor %}
+            </div>
+          {% endfor %}
+       </div>
+  {% else %}
+      <p>Няма налични изображения.</p>
+  {% endif %}
+  </div>
+{% endblock content %}

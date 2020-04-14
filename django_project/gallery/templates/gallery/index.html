@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% block content %}
+            {% if topics %}
+            <div class="site-section">
+                 <div class="container">
+                    <div class="row justify-content-center mb-5">
+                      <div class="col-md-7">
+                        <h2 class="site-section-heading font-weight-light text-black text-center">Галерия</h2>
+                      </div>
+                    </div> 
+                    {% for list_of_topic in list_of_topics %}
+                        <div class="row">
+                          {% for topic in list_of_topic %}
+                            <div class="col" id="{{topic.id}}">
+                                <button onclick="location.href='/gallery/{{ topic.name }}';" class="btn btn-primary py-3 px-5 text-white">
+                                    {{ topic.name }}
+                                </button>
+                            </div>
+                          {% endfor %}
+                      </div>
+                    {% endfor %}
+            {% else %}
+                <p>Няма налични галерии.</p>
+            {% endif %}
+        </div>
+        </div>
+{% endblock content %}

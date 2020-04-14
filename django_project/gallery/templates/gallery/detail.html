@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="site-section">
+    <div class="text-center" id="imageDetail">
+        <figure class="figure">
+            <img class="figure-img img-fluid rounded" src="/media/{{ photo.image }}">
+            <figcaption class="figure-caption">{{ photo.description }}</figcaption>
+        </figure>
+    </div>
+</div>
+{% endblock content %}

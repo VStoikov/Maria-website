@@ -25,7 +25,7 @@ SECRET_KEY = '$c!fro^w2qawhx7jdh)^i+gwm-m^+9-x(pgud+xf2&9o&0gn=d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'newsletter.apps.NewsletterConfig',
+    'gallery.apps.GalleryConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
