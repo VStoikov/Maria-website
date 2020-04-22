@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row min-height">
+      <div class="col-sm-12">
+                     
+                    <div class="row main_boder">
+                        <div class="col-sm-7">
+                             <h3 class="appointmnet_list">Моите часове</h3>
+                        </div>
+                        <div class="col-sm-5">
+                              <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                                  <input class="form-control mr-sm-2" type="text" name="q" placeholder="Търси по име/дата" placeholder="Въведи име" aria-label="Search">
+                                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търси</button>
+                               </form>
+
+                        </div>
+
+                    </div>
+                     
+                     <table class="table">
+                         <thead>
+                          <tr>
+                            <th scope="col">Часът е запазен от</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Час</th>
+                            <th scope="col">Услуга</th>
+                            
+                          </tr>
+                        </thead>{% for appoint in query %}
+                        {% if appoint.appointment_with != '' %}
+
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{appoint.appointment_with}}</th>
+                                  <td>{{appoint.date}}</td>
+                                  <td>{{appoint.time_start}} - {{appoint.time_end}}</td>
+                                  <td>{{appoint.service}}</td>
+                          </tr>{% endif %}
+                        </tbody>{% endfor %}
+                    </table>
+                           
+      </div>
+
+  </div>
+</div>
+{% endblock content %}
