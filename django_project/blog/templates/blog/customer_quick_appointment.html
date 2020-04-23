@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+	  <div class="row min-height">
+		    <div class="col-sm-12">
+                 
+                <div class="row main_boder">
+                    <div class="col-sm-7">
+                         <h3 class="appointmnet_list">Запази час</h3>
+                    </div>
+                    <div class="col-sm-5">
+                          <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                              <input class="form-control mr-sm-2" type="text" name="q" placeholder="Търси по име на фризьор" placeholder="Търси по име" aria-label="Search">
+                              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търси</button>
+                           </form>
+                    </div>
+
+                </div>
+                 
+                 <table class="table">
+                     <thead>
+                      <tr>
+                        <th scope="col">Фризьор</th>
+                        <th scope="col"></th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Свободни часове</th>
+                        <th scope="col">Услуги</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>{% for appoint in query %} <!--For loop-->
+                      {% if appoint.appointment_with == '' %} <!--only bookabe appointment-->
+                      <tr>
+                        <th scope="row">{{appoint.user.profile.name}}</th>
+                        <td><img class="rounded-circle article-img" src="{{ appoint.user.profile.image.url }}"></td>
+                        <td>{{appoint.date}}</td>
+                        <td> 
+                          <span class="inline">{{appoint.time_start}} - {{appoint.time_end}}</span> 
+                        </td>
+                        <td>{{appoint.service}}</td>
+                        <td><a href='{% url "appointment-update" id=appoint.id %}'> <button class="btn btn-primary" type="submit">Запази</button></a></td>
+                       {% endif %}
+                      </tr>{% endfor %}<!--End For loop-->
+                    </tbody>
+                </table>  
+                         
+		    </div>
+
+	  </div>
+</div>
+{% endblock content %}

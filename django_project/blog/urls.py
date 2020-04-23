@@ -9,7 +9,10 @@ from .views import (
     AboutView,
     ServicesView,
     #HaircutsView,
-    ContactsView
+    ContactsView,
+    customer,
+    quick_appointmnet,
+    appointment_book
 )
 from . import views
 
@@ -23,5 +26,9 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='blog-about'),
     path('services/', ServicesView.as_view(), name='blog-services'),
     path('contacts/', ContactsView.as_view(), name='blog-contacts'),
+    path('my_appointment/', views.customer, name='customer-appointment'),
+    path('quick_appointmnet/', views.quick_appointmnet, name='quick-appointmnet'),   
+    path('update/<int:id>/', views.appointment_book,name='appointment-update'),
+    path('team/', views.team, name='team'),
     #path('about/', views.about, name='blog-about'),
 ]

@@ -1,18 +1,13 @@
 {% extends "blog/base.html" %}
 {% load static %}
 {% block content %}
-	<div class="site-section">
-	  <div class="container">
-	    <div class="row justify-content-center mb-5">
-	      <div class="col-md-7">
-	        <h2 class="site-section-heading font-weight-light text-black text-center">{{ page_obj.title }}</h2>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
     <div class="site-section bg-light">
       <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7">
+            <h2 class="site-section-heading font-weight-light text-black text-center">{{ page_obj.title }}</h2>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-7 mb-5">
             <form action="#" class="p-5 bg-white">
@@ -50,7 +45,7 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                  <input type="submit" value="Изпрати съобщението" class="btn btn-primary py-2 px-4 text-white">
                 </div>
               </div>
   

@@ -1,3 +1,4 @@
+{% load auth_extras %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -75,15 +76,34 @@
 	                  <ul class="dropdown">
 	                    <li><a href="{% url 'blog-services' %}">Услуги</a></li>
 	                    <li><a href="/gallery">Галерия</a></li>
-	                    <li><a href="#">Екип</a></li>
+	                    <li><a href="{% url 'team' %}">Екип</a></li>
 	                  </ul>
 	                </li>
-	                <li><a href="#">Запази час</a></li>
+                  <li class="has-children">
+                    {% if request.user|has_group:"Employee" %} 
+                    <a href="/appointment">Запазени часове</a>
+                    <ul class="dropdown">
+                      <li><a href="/appointment/my_appointment/">Моите часове</a></li>
+                      <li><a href="/appointment/create_appointment">Създай/коригирай час</a></li>
+                    </ul>
+                    {% else %}
+                    <a href="{% url 'quick-appointmnet' %}">Запази час</a>
+                    <ul class="dropdown">
+                      <li><a href="{% url 'customer-appointment' %}">Моите часове</a></li>
+                    </ul>
+                    {% endif %}
+                  </li>
 	                <li><a href="{% url 'blog-contacts' %}">Контакти</a></li>
 	                {% if user.is_authenticated %}
-	                  <a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a>
-	                  <a class="nav-item nav-link" href="{% url 'profile' %}">Профил</a>
-	                  <a class="nav-item nav-link" href="{% url 'logout' %}">Изход</a>
+                    <li class="has-children">
+                      <a href="{% url 'profile' %}">Профил</a>
+                      <ul class="dropdown">
+                        {% if request.user|has_group:"Employee" %}
+                          <li><a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a></li>
+                        {% endif %}
+                        <li><a class="nav-item nav-link" href="{% url 'logout' %}">Изход</a></li>
+                      </ul>
+                    </li>
 	                {% else %}
 	                  <a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
 	                  <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
@@ -128,14 +148,13 @@
 		      		{{ message }}
 		      	</div>
 		      	{% endfor %}
-		      {% endif %}
-		      {% block content %}{% endblock %}
+		      {% endif %}		      
 		    </div>
 		  </div>
 		</main>
 	</div>
-
-    <div class="site-section">
+  {% block content %}{% endblock %}
+    <div class="site-section bg-light">
       <div class="container">
         <div class="row text-center">
           <div class="col-md-12">
@@ -152,7 +171,7 @@
           <div class="col-lg-4">
             <div class="mb-5">
               <h3 class="footer-heading mb-4">За нас</h3>
-              <p>Описание</p>
+              <p>Здравейте, скъпи клиенти, С радост ще Ви разкажем за нашата осъществена мечта, а именно салонът за красота "ИМЕ НА САЛОНА".<li><a href="{% url 'blog-about' %}">Прочети още</a></li></p>
             </div>
 
             
@@ -165,17 +184,16 @@
               </div>
               <div class="col-md-6 col-lg-6">
                 <ul class="list-unstyled">
-                  <li><a href="#">Начало</a></li>
-                  <li><a href="#">Фризьори</a></li>
-                  <li><a href="#">Новини</a></li>
+                  <li><a href="{% url 'blog-home' %}">Начало</a></li>
+                  <li><a href="{% url 'team' %}">Фризьори</a></li>
+                  <li><a href="{% url 'blog-home' %}">Новини</a></li>
                 </ul>
               </div>
               <div class="col-md-6 col-lg-6">
                 <ul class="list-unstyled">
-                  <li><a href="#">За нас</a></li>
-                  <li><a href="#">Правила</a></li>
-                  <li><a href="#">Контакти</a></li>
-                  <li><a href="#">Членство</a></li>
+                  <li><a href="{% url 'blog-about' %}">За нас</a></li>
+                  <li><a href="{% url 'blog-services' %}">Услуги</a></li>
+                  <li><a href="{% url 'blog-contacts' %}">Контакти</a></li>
                 </ul>
               </div>
             </div>
@@ -205,9 +223,8 @@
           <div class="col-md-12">
             <div class="mb-5">
               <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
               <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
             </div>
 
             <p>

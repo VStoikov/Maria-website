@@ -1,47 +1,44 @@
 {% extends "blog/base.html" %}
 {% block content %}
 <div class="container">
-          <div class="row min-height">
-              <div class="col-sm-12">
-                             
-                            <div class="row main_boder">
-                                <div class="col-sm-7">
-                                     <h3 class="appointmnet_list">Създай час за посещение</h3>
-                                </div>
-                                <div class="col-sm-5">
-                                      <form class="form-inline my-2 my-lg-0" method="GET" action="">
-                                          <input class="form-control mr-sm-2" type="text" name="q" placeholder="Въведи дата" placeholder="Въведи име" aria-label="Search">
-                                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търсене</button>
-                                       </form>
+	<div class="row min-height">
+	  <div class="col-sm-12">                             
+	    <div class="row main_boder">
+	        <div class="col-sm-7">
+	             <h3 class="appointmnet_list">Създай час за посещение</h3>
+	        </div>
+	        <div class="col-sm-5">
+	              <form class="form-inline my-2 my-lg-0" method="GET" action="">
+	                  <input class="form-control mr-sm-2" type="text" name="q" placeholder="Въведи дата" placeholder="Въведи име" aria-label="Search">
+	                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търсене</button>
+	               </form>
+	        </div> 
+	    </div>
+	    <br>
 
-                                </div>
- 
- 
-                            </div>
+		<form method="POST" action="">{% csrf_token %}
+		   <div class="row" id="datepairExample">
+		      <div class="col">
+		        <input type="text" class="form-control date start"  name="{{form.date.name}}" required id="id_{{form.date.name}}" placeholder="Дата">
+		      </div> От
+		      <div class="col">
+		        <input type="text" class="form-control time start" name="{{form.time_start.name}}" required id="id_{{form.time_start.name}}" required placeholder="Начален час">
+		      </div> до
+		      <div class="col">
+		        <input type="text" class="form-control time end" name="{{form.time_end.name}}" required id="id_{{form.time_end.name}}" required placeholder="Краен час">
+		      </div>
 
-                          <form method="POST" action="">{% csrf_token %}
-                               <div class="row" id="datepairExample">
-                                  <div class="col">
-                                    <input type="text" class="form-control date start"  name="{{form.date.name}}" required id="id_{{form.date.name}}" placeholder="Дата">
-                                  </div> От
-                                  <div class="col">
-                                    <input type="text" class="form-control time start" name="{{form.time_start.name}}" required id="id_{{form.time_start.name}}" required placeholder="Начален час">
-                                  </div> до
-                                  <div class="col">
-                                    <input type="text" class="form-control time end" name="{{form.time_end.name}}" required id="id_{{form.time_end.name}}" required placeholder="Краен час">
-                                  </div>
+		      <div class="col">
+		        <input type="text" class="form-control" name="{{form.service.name}}" required id="id_{{form.service.name}}" required placeholder="Услуги">
+		      </div>
 
-                                  <div class="col">
-                                    <input type="text" class="form-control" name="{{form.service.name}}" required id="id_{{form.service.name}}" required placeholder="Услуга">
-                                  </div>
+		      <div class="col">
+		        <button type="submit" class="btn btn-success">Добави <i class="fas fa-plus"></i></button>
+		      </div>
 
-                                  <div class="col">
-                                    <button type="submit" class="btn btn-success">Add <i class="fas fa-plus"></i></button>
-                                  </div>
-
-                                </div>
-                             </form>
-                             <br>
+		    </div>
+		 </form>
+        <br>
       </div>
 
       <script>
@@ -58,44 +55,39 @@
       $('#datepairExample').datepair();
       </script>
 
-                             <table class="table">
-                                       <thead>
-                                        <tr>
-                                          <th scope="col">Дата</th>
-                                          <th scope="col">Час</th>
-                                          <th scope="col">Услуга</th>
-                                          
-                                        </tr>
-                                      </thead>{% for appoint in query %} <!--For Loop for all post -->
-                                      {% if appoint.appointment_with != '' %} <!--Filter only those are booked-->
-                                      <tbody>
-                                        <tr>
-                                          <td>{{appoint.date}}</td>
-                                          <td>{{appoint.time_start}} - {{appoint.time_end}}</td>
-                                          <td>{{appoint.service}}</td>
-                                          <td><button title="Часът е запазен и не подлежи на промяна, ако не сте admin!" type="button" class="btn btn-primary">Запазено от: {{appoint.appointment_with}}</button></td>
-                                          </td>
-                                        </tr>
-                                      </tbody>{% endif %}
-
-                                      {% if appoint.appointment_with == '' %}<!--Filter Those not Booked yet-->
-                                      <tbody>
-                                        <tr>
-                                          <td>{{appoint.date}}</td>
-                                          <td>{{appoint.time_start}} - {{appoint.time_end}}</td>
-                                          <td>{{appoint.service}}</td>
-                                          <td><a href='{% url "appointment_delete" id=appoint.id %}'><button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a> <a href='{% url "employee_appointment_update" id=appoint.id %}'><button type="submit" class="btn btn-danger"><i class="far fa-edit"></i></button></a></td>
-
-                                        </tr>
-                                        
-                                      </tbody>{% endif %}
-
-                                      {% endfor %}
-                              </table>
-                            
-
-
-              </div>
-       
-          </div>
+		<table class="table">
+		       <thead>
+		        <tr>
+		          <th scope="col">Дата</th>
+		          <th scope="col">Час</th>
+		          <th scope="col">Услуги</th>
+		          
+		        </tr>
+		      </thead>
+		      {% for appoint in query %} <!--For Loop for all post -->
+			      {% if appoint.appointment_with != '' %} <!--Filter only those are booked-->
+			      <tbody>
+			        <tr>
+			          <td>{{appoint.date}}</td>
+			          <td>{{appoint.time_start}} - {{appoint.time_end}}</td>
+			          <td>{{appoint.service}}</td>
+			          <td><button title="Часът е запазен и не подлежи на промяна, ако не сте admin!" type="button" class="btn btn-primary">Запазено от: {{appoint.appointment_with}}</button></td>
+			          </td>
+			        </tr>
+			      </tbody>
+			      {% endif %}
+		      {% if appoint.appointment_with == '' %}<!--Filter Those not Booked yet-->
+		      <tbody>
+		        <tr>
+		          <td>{{appoint.date}}</td>
+		          <td>{{appoint.time_start}} - {{appoint.time_end}}</td>
+		          <td>{{appoint.service}}</td>
+		          <td><a href='{% url "appointment_delete" id=appoint.id %}'><button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a> <a href='{% url "employee_appointment_update" id=appoint.id %}'><button type="submit" class="btn btn-danger"><i class="far fa-edit"></i></button></a></td>
+		        </tr>		        
+		      </tbody>
+		      {% endif %}
+		      {% endfor %}
+		</table>
+	</div>       
+</div>
 {% endblock content %}
