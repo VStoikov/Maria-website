@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('gallery/', include('gallery.urls')),
     path('appointment/', include('appointment.urls')),
+    path('works/', include('works.urls')),
 ]
 
 if settings.DEBUG:

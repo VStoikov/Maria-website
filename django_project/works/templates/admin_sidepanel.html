@@ -1,0 +1,17 @@
+<ul class="nav flex-column nav-pills">
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'admin' %} active {% endif %}" href="{% url 'admin' %}">Добавяне/Редактиране на услуги</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'hsc' %} active {% endif %}" href="{% url 'hsc' %}">Добавяне/Редактиране на данъци</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'challan_no' %} active {% endif %}" href="{% url 'challan_no' %}">Текуща фактура</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'report_service' %} active {% endif %}" href="{% url 'report_service' %}">Отчет за извършени услуги</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'stock_report_monthly' %} active {% endif %}" href="{% url 'stock_report_monthly' %}">Отчет за издадени фактури</a>
+    </li>
+</ul>

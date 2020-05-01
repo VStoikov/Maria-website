@@ -1,23 +1,26 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<center>
-		test
-	</center>
-	<div class="content-section">
-	  <div class="media">
-	    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-	    <div class="media-body">
-	      <h2 class="account-heading">{{ user.username }}</h2>
-	      <h2 class="account-heading">{{ user.name }}</h2>
-	      <p class="text-secondary">{{ user.email }}</p>
-	      <p class="text-secondary">{{ user.twitter }}</p>
-	      <p class="text-secondary">{{ user.instagram }}</p>
-	      <p class="text-secondary">{{ user.facebook }}</p>
-	      <p class="text-secondary">{{ user.description }}</p>
-	    </div>
-	  </div>
-	  <form method="POST" enctype="multipart/form-data">
+<div class="site-section">
+ 	<div class="container">
+	    <div class="row justify-content-center mb-5">
+	      <div class="col-md-7">
+	        <h2 class="site-section-heading font-weight-light text-black text-center">Редактиране на профила</h2>
+	      </div>
+	    </div> 
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+			<div class="media-body">
+			  <h2 class="account-heading">{{ user.username }}</h2>
+			  <h2 class="account-heading">{{ user.name }}</h2>
+			  <p class="text-secondary">{{ user.email }}</p>
+			  <p class="text-secondary">{{ user.twitter }}</p>
+			  <p class="text-secondary">{{ user.instagram }}</p>
+			  <p class="text-secondary">{{ user.facebook }}</p>
+			  <p class="text-secondary">{{ user.description }}</p>
+			</div>
+		</div>
+		<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		<fieldset class="form-group">
 		<legend class="border-bottom mb-4">Потребителска информация</legend>
@@ -27,6 +30,7 @@
 		<div class="form-group">
 			<button class="btn btn-outline-info" type="submit">Обнови</button>
 		</div>
-	  </form>
+		</form>
 	</div>
+</div>
 {% endblock content %}

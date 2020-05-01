@@ -80,26 +80,31 @@
 	                  </ul>
 	                </li>
                   <li class="has-children">
-                    {% if request.user|has_group:"Employee" %} 
-                    <a href="/appointment">Запазени часове</a>
-                    <ul class="dropdown">
-                      <li><a href="/appointment/my_appointment/">Моите часове</a></li>
-                      <li><a href="/appointment/create_appointment">Създай/коригирай час</a></li>
-                    </ul>
+                    {% if user.is_authenticated %}
+                      {% if request.user|has_group:"Employee" %} 
+                      <a href="/appointment">Запазени часове</a>
+                      <ul class="dropdown">
+                        <li><a href="/appointment/my_appointment/">Моите часове</a></li>
+                        <li><a href="/appointment/create_appointment">Създай/коригирай час</a></li>
+                      </ul>
+                      {% else %}
+                      <a href="{% url 'quick-appointmnet' %}">Запази час</a>
+                      <ul class="dropdown">
+                        <li><a href="{% url 'customer-appointment' %}">Моите часове</a></li>
+                      </ul>
+                      {% endif %}
                     {% else %}
-                    <a href="{% url 'quick-appointmnet' %}">Запази час</a>
-                    <ul class="dropdown">
-                      <li><a href="{% url 'customer-appointment' %}">Моите часове</a></li>
-                    </ul>
+                      <li><a href="{% url 'login' %}">Запази час</a></li>
                     {% endif %}
                   </li>
-	                <li><a href="{% url 'blog-contacts' %}">Контакти</a></li>
+  	                <li><a href="{% url 'blog-contacts' %}">Контакти</a></li>
 	                {% if user.is_authenticated %}
                     <li class="has-children">
                       <a href="{% url 'profile' %}">Профил</a>
                       <ul class="dropdown">
                         {% if request.user|has_group:"Employee" %}
                           <li><a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a></li>
+                          <li><a class="nav-item nav-link" href="/works">Счетоводство</a></li>
                         {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Изход</a></li>
                       </ul>
@@ -248,7 +253,7 @@
   	<script src="{% static 'js/popper.min.js' %}"></script>
   	<script src="{% static 'js/bootstrap.min.js' %}"></script>
   	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
- 	<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+ 	  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
   	<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
   	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
   	<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
