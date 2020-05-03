@@ -103,8 +103,13 @@
                       <a href="{% url 'profile' %}">Профил</a>
                       <ul class="dropdown">
                         {% if request.user|has_group:"Employee" %}
-                          <li><a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a></li>
-                          <li><a class="nav-item nav-link" href="/works">Счетоводство</a></li>
+                        <li><a class="nav-item nav-link" href="/vacations">Моите почивки</a></li>
+                        <li><a class="nav-item nav-link" href="/vacations/create_vacations">Добави почивка</a></li>
+                        {% endif %}
+                        {% if request.user|has_group:"Administrator" %}
+                        <li><a class="nav-item nav-link" href="{% url 'post-create' %}">Нова публикация</a></li>
+                        <li><a class="nav-item nav-link" href="/works">Счетоводство</a></li>
+                        <li><a class="nav-item nav-link" href="/admin">Администраторски панел</a></li>
                         {% endif %}
                         <li><a class="nav-item nav-link" href="{% url 'logout' %}">Изход</a></li>
                       </ul>

@@ -1,0 +1,89 @@
+{% extends "blog/base.html" %}
+{% load auth_extras %}
+{% block content %}
+
+<div class="container">
+    <div class="row min-height">
+        <div class="col-sm-12">                             
+            <div class="row main_boder">
+                <div class="col-sm-7">
+                     <h3 class="vacations_list">Добави дата за ваканция</h3>
+                </div>
+                <div class="col-sm-5">
+                      <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                          <input class="form-control mr-sm-2" type="text" name="q" placeholder="Въведи дата" placeholder="Въведи име" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търсене</button>
+                       </form>
+                </div>
+            </div>
+	          <form method="POST" action="">{% csrf_token %}
+	               <div class="row" id="datepairExample">
+	                  <div class="col">
+	                    <input type="text" class="form-control date start" name="{{form.date_start.name}}" required id="id_{{form.date_start.name}}" required placeholder="{{form.date_start.value}}">
+	                  </div> до
+	                  <div class="col">
+	                    <input type="text" class="form-control date end" name="{{form.date_end.name}}" required id="id_{{form.date_end.name}}" required placeholder="{{form.date_end.value}}">
+	                  </div>
+
+	                  <div class="col">
+	                    <input type="text" class="form-control" name="{{form.reason.name}}" required id="id_{{form.reason.name}}" required placeholder="{{form.reason.value}}">
+	                  </div>
+
+	                  <div class="col">
+	                    <button type="submit" class="btn btn-success">Обнови <i class="fas fa-pen-alt"></i></button>
+	                  </div>
+
+	                </div>
+	             </form>
+                 <br>
+        </div>
+
+		<script>
+		$('#datepairExample .time').timepicker({
+		'showDuration': true,
+		'timeFormat': 'g:ia'
+		});
+
+		$('#datepairExample .date').datepicker({
+		'format': 'd/m/yyyy',
+		'autoclose': true
+		});
+
+		$('#datepairExample').datepair();
+		</script>
+
+		<table class="table">
+		       <thead>
+		        <tr>
+		          <th scope="col">Начална дата</th>
+		          <th scope="col">Крайна дата</th>
+		          <th scope="col">Причина</th>
+		          
+		        </tr>
+		      </thead>{% for vacation in query %}
+		      {% if request.user|has_group:"Administrator" %}
+		      <tbody>
+		        <tr>
+		          <td>{{vacation.date_start}}</td>
+		          <td>{{vacation.date_end}}</td>
+		          <td>{{vacation.reason}}</td>
+		          <td><a href='{% url "vacations_delete" id=vacation.id %}'><button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></a> <a href='{% url "employee_vacations_update" id=vacation.id %}'><button type="submit" class="btn btn-danger"><i class="far fa-edit"></i></button></a></td>
+
+		        </tr>
+		        
+		      </tbody>
+		      {% elif request.user|has_group:"Employee" %}
+		      <tbody>
+		        <tr>
+		          <td>{{vacation.date_start}}</td>
+		          <td>{{vacation.date_end}}</td>
+		          <td>{{vacation.reason}}</td>
+		          <td><button title="Часът е запазен и не подлежи на промяна, ако не сте admin!" type="button" class="btn btn-primary">Часът не подлежи на промяна</button></td>
+		          </td>
+		        </tr>
+		      </tbody>{% endif %}
+		      {% endfor %}
+		</table>
+	</div>
+</div>
+{% endblock content %}

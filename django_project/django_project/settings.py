@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'gallery.apps.GalleryConfig',
     'appointment.apps.AppointmentConfig',
     'works.apps.WorksConfig',
+    'vacations.apps.VacationsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

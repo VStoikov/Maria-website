@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row min-height">
+      <div class="col-sm-12">
+                     
+                    <div class="row main_boder">
+                        <div class="col-sm-7">
+                             <h3 class="vacations_list">Моите почивки</h3>
+                        </div>
+                        <div class="col-sm-5">
+                              <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                                  <input class="form-control mr-sm-2" type="text" name="q" placeholder="Търси по дата" placeholder="Въведи дата" aria-label="Search">
+                                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">Търси</button>
+                               </form>
+
+                        </div>
+
+                    </div>
+                     
+                     <table class="table">
+                         <thead>
+                          <tr>
+                            <th scope="col">Начална дата</th>
+                            <th scope="col">Крайна дата</th>
+                            <th scope="col">Причина</th>                            
+                          </tr>
+                        </thead>{% for vacation in query %}
+                        <tbody>
+                          <tr>
+                            <td>{{vacation.date_start}}</td>
+                            <td>{{vacation.date_end}}</td>
+                            <td>{{vacation.reason}}</td>
+                          </tr>
+                        </tbody>{% endfor %}
+                    </table>
+                           
+      </div>
+
+  </div>
+</div>
+{% endblock content %}
